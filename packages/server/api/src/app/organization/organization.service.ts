@@ -86,6 +86,10 @@ export const organizationService = {
       id,
     });
   },
+
+  async list(): Promise<Organization[] | null> {
+    return repo().find();
+  },
 };
 
 type AddParams = {
