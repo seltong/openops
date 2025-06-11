@@ -146,11 +146,14 @@ export function generateTheme({
 
 export const defaultTheme = generateTheme({
   primaryColor: '#110545',
-  websiteName: 'OpenOps',
-  fullLogoUrl: 'https://static.openops.com/logos/logo.svg',
-  fullLogoPositiveUrl: 'https://static.openops.com/logos/logo.positive.svg',
-  favIconUrl: 'https://static.openops.com/logos/favicon.ico',
-  logoIconUrl: 'https://static.openops.com/logos/logo.icon.svg',
+  websiteName: 'FinCop',
+  fullLogoUrl:
+    'https://cop-image-settings.s3.us-east-1.amazonaws.com/logo-fincop.png',
+  fullLogoPositiveUrl:
+    'https://cop-image-settings.s3.us-east-1.amazonaws.com/logo-fincop.png',
+  favIconUrl:
+    'https://cop-image-settings.s3.us-east-1.amazonaws.com/favicon.ico',
+  logoIconUrl: 'https://cop-image-settings.s3.us-east-1.amazonaws.com/file.svg',
   logoIconPositiveUrl:
-    'https://static.openops.com/logos/logo.icon.positive.svg',
+    'https://cop-image-settings.s3.us-east-1.amazonaws.com/file.svg',
 });
