@@ -20,6 +20,7 @@ import { t } from 'i18next';
 import { flagsHooks } from '@/app/common/hooks/flags-hooks';
 import { FlowsPageHeader } from '@/app/features/flows/components/flows-page-header';
 import { HomeHelpDropdown } from '@/app/features/home/components/home-help-dropdown';
+import { ProjectSelect } from '@/app/features/home/components/project-select';
 import { AiSettingsPage } from '@/app/routes/settings/ai';
 import { FlagId } from '@openops/shared';
 import { lazy, Suspense } from 'react';
@@ -348,6 +349,7 @@ const createRoutes = () => {
         <DashboardContainer
           pageHeader={
             <FlowsPageHeader title={t('Overview')}>
+              <ProjectSelect />
               <HomeHelpDropdown />
             </FlowsPageHeader>
           }

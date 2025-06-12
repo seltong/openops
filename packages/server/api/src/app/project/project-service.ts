@@ -42,6 +42,10 @@ export const projectService = {
     });
   },
 
+  async list(): Promise<Project[] | null> {
+    return projectRepo().find();
+  },
+
   async update(projectId: ProjectId, request: UpdateParams): Promise<Project> {
     await projectRepo().update(
       {

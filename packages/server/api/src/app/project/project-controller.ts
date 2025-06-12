@@ -20,11 +20,9 @@ export const userProjectController: FastifyPluginCallbackTypebox = (
     }
   });
 
-  fastify.get('/', async (request) => {
-    return paginationHelper.createPage(
-      [await projectService.getOneOrThrow(request.principal.projectId)],
-      null,
-    );
+  fastify.get('/', async () => {
+    const projects = await projectService.list();
+    return paginationHelper.createPage(projects || [], null);
   });
   done();
 };
