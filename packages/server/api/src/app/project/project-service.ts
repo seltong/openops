@@ -134,6 +134,10 @@ export const projectService = {
 
     await projectRepo().update(query, update);
   },
+
+  async list(): Promise<Project[] | null> {
+    return projectRepo().find();
+  },
 };
 
 type UpdateParams = {

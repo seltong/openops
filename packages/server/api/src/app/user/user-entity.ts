@@ -1,8 +1,9 @@
-import { Project, User } from '@openops/shared';
+import { Organization, Project, User } from '@openops/shared';
 import { EntitySchema } from 'typeorm';
 import { BaseColumnSchemaPart } from '../database/database-common';
 
 export type UserSchema = User & {
+  organizations: Organization[];
   projects: Project[];
 };
 
@@ -57,6 +58,21 @@ export const UserEntity = new EntitySchema<UserSchema>({
     },
   ],
   relations: {
+    organizations: {
+      target: 'organization',
+      type: 'many-to-many',
+      joinTable: {
+        name: 'users_organizations',
+        joinColumn: {
+          name: 'user_id',
+        },
+        inverseJoinColumn: {
+          name: 'organization_id',
+        },
+      },
+      inverseSide: 'user',
+      cascade: true,
+    },
     projects: {
       type: 'one-to-many',
       target: 'user',

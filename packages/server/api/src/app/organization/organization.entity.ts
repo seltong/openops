@@ -7,6 +7,7 @@ import {
 
 type OrganizationSchema = Organization & {
   owner: User;
+  users: User[];
 };
 
 export const OrganizationEntity = new EntitySchema<OrganizationSchema>({
@@ -38,6 +39,11 @@ export const OrganizationEntity = new EntitySchema<OrganizationSchema>({
         referencedColumnName: 'id',
         foreignKeyConstraintName: 'fk_organization_user',
       },
+    },
+    users: {
+      type: 'many-to-many',
+      inverseSide: 'organizations',
+      target: 'user',
     },
   },
 });
