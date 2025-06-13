@@ -25,6 +25,10 @@ export const OrganizationEntity = new EntitySchema<OrganizationSchema>({
       type: Number,
       nullable: false,
     },
+    newColumn: {
+      type: Number,
+      nullable: false,
+    },
   },
   indices: [],
   relations: {

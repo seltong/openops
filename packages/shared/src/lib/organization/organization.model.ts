@@ -9,6 +9,7 @@ export const Organization = Type.Object({
   ownerId: OpenOpsId,
   name: Type.String(),
   tablesWorkspaceId: Type.Number(),
+  newColumn: Type.Number(),
 });
 
 export type Organization = Static<typeof Organization>;

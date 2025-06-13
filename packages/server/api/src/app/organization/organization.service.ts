@@ -28,6 +28,7 @@ export const organizationService = {
       ownerId,
       name,
       tablesWorkspaceId,
+      newColumn: 0,
     };
 
     const savedOrganization = await repo().save(newOrganization);
