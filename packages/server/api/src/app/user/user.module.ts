@@ -1,6 +1,10 @@
 import { FastifyPluginAsyncTypebox } from '@fastify/type-provider-typebox';
 import { cacheWrapper } from '@openops/server-shared';
-import { PrincipalType, UpdateTrackingRequestBody } from '@openops/shared';
+import {
+  CreateUserRequestBody,
+  PrincipalType,
+  UpdateTrackingRequestBody,
+} from '@openops/shared';
 import { FastifyRequest } from 'fastify';
 import { userService } from './user-service';
 
@@ -12,6 +16,13 @@ const usersController: FastifyPluginAsyncTypebox = async (app) => {
   app.get('/me', async (request: FastifyRequest) => {
     const user = await userService.getMetaInfo({
       id: request.principal.id,
+    });
+    return user;
+  });
+
+  app.post('/', CreateUserRequestOptions, async (request) => {
+    const user = await userService.create({
+      ...request.body,
     });
     return user;
   });
@@ -40,6 +51,15 @@ const usersController: FastifyPluginAsyncTypebox = async (app) => {
       };
     },
   );
+};
+
+const CreateUserRequestOptions = {
+  config: {
+    allowedPrincipals: [PrincipalType.USER],
+  },
+  schema: {
+    body: CreateUserRequestBody,
+  },
 };
 
 const UpdateTrackingRequestOptions = {

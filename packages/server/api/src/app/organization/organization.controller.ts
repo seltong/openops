@@ -4,6 +4,7 @@ import {
 } from '@fastify/type-provider-typebox';
 import {
   assertEqual,
+  CreateOrganizationRequestBody,
   EndpointScope,
   OpenOpsId,
   Organization,
@@ -17,6 +18,12 @@ import { organizationService } from './organization.service';
 export const organizationController: FastifyPluginAsyncTypebox = async (
   app,
 ) => {
+  app.post('/create', CreateOrganizationRequest, async (req) => {
+    return organizationService.create({
+      ...req.body,
+    });
+  });
+
   app.post('/:id', UpdateOrganizationRequest, async (req) => {
     return organizationService.update({
       id: req.params.id,
@@ -35,6 +42,20 @@ export const organizationController: FastifyPluginAsyncTypebox = async (
     const organization = await organizationService.getOneOrThrow(req.params.id);
     return organization;
   });
+
+  app.get('/', async () => {
+    const organizations = await organizationService.list();
+    return organizations;
+  });
+};
+
+const CreateOrganizationRequest = {
+  schema: {
+    body: CreateOrganizationRequestBody,
+    response: {
+      [StatusCodes.OK]: Organization,
+    },
+  },
 };
 
 const UpdateOrganizationRequest = {

@@ -96,6 +96,10 @@ export const projectService = {
     });
   },
 
+  async list(): Promise<Project[] | null> {
+    return projectRepo().find();
+  },
+
   async getUserProjectOrThrow(ownerId: UserId): Promise<Project> {
     const project = await projectRepo().findOneBy({
       ownerId,
